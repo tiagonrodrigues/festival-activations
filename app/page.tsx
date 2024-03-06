@@ -188,8 +188,7 @@ export default function Home() {
         </p>
         {!otpConfirm ? (
           <input
-            type='number'
-            pattern='\d*'
+            type='tel'
             placeholder='| Número de telemóvel'
             value={phoneNumber}
             onChange={(e) => setPhoneNumber(e.target.value)}
