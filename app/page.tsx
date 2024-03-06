@@ -189,7 +189,7 @@ export default function Home() {
         {!otpConfirm ? (
           <input
             type='tel'
-            placeholder='| Número de telemóvel'
+            placeholder='+351 | Número de telemóvel'
             value={phoneNumber}
             onChange={(e) => setPhoneNumber(e.target.value)}
             className='w-full px-4 py-2 outline-none border-2 border-white rounded-full bg-[transparent] '
