@@ -196,7 +196,8 @@ export default function Home() {
           />
         ) : (
           <input
-            type='text'
+            type='tel'
+            pattern='\d*'
             placeholder='| Código de Confirmação'
             value={otp}
             onChange={(e) => setOtp(e.target.value)}
