@@ -3,9 +3,6 @@
 import React, { useEffect, useState } from 'react'
 
 import './globals.css'
-import Logo from '/content/logos/musicaNoCoracao.png'
-import Icon from '/content/logos/icon.png'
-import Check from '/content/imgs/check-mark.png'
 
 export default function Home() {
   const [otp, setOtp] = useState('')
@@ -47,9 +44,8 @@ export default function Home() {
         setShowModal(true)
         setIsSpinning(false)
         return
-      }
-      else {
-        play();
+      } else {
+        play()
       }
     } catch (error) {
       setModalTitle('Aviso')
@@ -192,7 +188,8 @@ export default function Home() {
         </p>
         {!otpConfirm ? (
           <input
-            type='text'
+            type='number'
+            pattern='\d*'
             placeholder='| Número de telemóvel'
             value={phoneNumber}
             onChange={(e) => setPhoneNumber(e.target.value)}
