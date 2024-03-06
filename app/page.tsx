@@ -196,7 +196,7 @@ export default function Home() {
           />
         ) : (
           <input
-            type='tel'
+            type='number'
             pattern='\d*'
             placeholder='| Código de Confirmação'
             value={otp}
