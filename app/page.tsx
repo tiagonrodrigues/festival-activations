@@ -23,7 +23,7 @@ export default function Home() {
   const sendOtp = async () => {
     if (!terms) {
       setModalTitle('Aviso')
-      setModalText('Please accept the terms and conditions to play.')
+      setModalText('Por favor aceite os termos e condições para jogar.')
       setShowModal(true)
       return 
     }
@@ -105,7 +105,7 @@ export default function Home() {
     setIsSpinning(true)
     if (!terms) {
       setModalTitle('Aviso')
-      setModalText('Please accept the terms and conditions to play.')
+      setModalText('Por favor aceite os termos e condições para jogar.')
       setShowModal(true)
       setIsSpinning(false)
       return
