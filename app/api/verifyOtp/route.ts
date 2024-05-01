@@ -8,7 +8,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
       process.env.TWILIO_AUTH_TOKEN
     )
     const { phoneNumber, otp } = await req.json()
-    console.log(phoneNumber, otp)
+
     const verifySid = process.env.TWILIO_VERIFY_SID
 
     if (!verifySid) {

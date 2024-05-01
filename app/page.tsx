@@ -25,7 +25,7 @@ export default function Home() {
       setModalTitle('Aviso')
       setModalText('Por favor aceite os termos e condições para jogar.')
       setShowModal(true)
-      return 
+      return
     }
     if (!checkNumber()) {
       setModalTitle('Aviso')
@@ -34,11 +34,11 @@ export default function Home() {
       return
     }
     try {
-      let number = phoneNumber;
+      let number = phoneNumber
       // If number doesnt start with +351, add it
       if (number.length === 9) {
         number = '+351' + number
-      } 
+      }
       const response = await fetch('/api/sendOtp', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -50,15 +50,15 @@ export default function Home() {
 
   const verifyOtp = async () => {
     try {
-      let number = phoneNumber;
+      let number = phoneNumber
       // If number doesnt start with +351, add it
       if (number.length === 9) {
         number = '+351' + number
-      } 
+      }
       const response = await fetch('/api/verifyOtp', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ number, otp })
+        body: JSON.stringify({ phoneNumber: number, otp })
       })
       if (response.status !== 200) {
         setModalTitle('Aviso')
@@ -98,7 +98,7 @@ export default function Home() {
   ]
 
   function checkNumber() {
-    return phoneNumber.length === 9 || phoneNumber.length === 13;
+    return phoneNumber.length === 9 || phoneNumber.length === 13
   }
 
   function play() {

@@ -14,8 +14,6 @@ export async function POST(req: NextRequest, res: NextResponse) {
     throw new Error('TWILIO_VERIFY_SID is not defined')
   }
 
-  console.log('teste')
-
   const verificationCheck = await client.verify.v2
     .services(verifySid)
     .verifications.create({ to: phoneNumber, channel: 'sms' })
