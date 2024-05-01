@@ -21,11 +21,28 @@ export default function Home() {
   )
 
   const sendOtp = async () => {
+    if (!terms) {
+      setModalTitle('Aviso')
+      setModalText('Please accept the terms and conditions to play.')
+      setShowModal(true)
+      return 
+    }
+    if (!checkNumber()) {
+      setModalTitle('Aviso')
+      setModalText('Por favor insira um número de telemóvel válido.')
+      setShowModal(true)
+      return
+    }
     try {
+      let number = phoneNumber;
+      // If number doesnt start with +351, add it
+      if (number.length === 9) {
+        number = '+351' + number
+      } 
       const response = await fetch('/api/sendOtp', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ phoneNumber: phoneNumber })
+        body: JSON.stringify({ phoneNumber: number })
       })
       setOtpConfirm(true)
     } catch (error) {}
@@ -33,14 +50,19 @@ export default function Home() {
 
   const verifyOtp = async () => {
     try {
+      let number = phoneNumber;
+      // If number doesnt start with +351, add it
+      if (number.length === 9) {
+        number = '+351' + number
+      } 
       const response = await fetch('/api/verifyOtp', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ phoneNumber, otp })
+        body: JSON.stringify({ number, otp })
       })
       if (response.status !== 200) {
         setModalTitle('Aviso')
-        setModalText('O número introduzido não foi confirmado.')
+        setModalText('O número introduzido não foi confirmado!')
         setShowModal(true)
         setIsSpinning(false)
         return
@@ -49,7 +71,7 @@ export default function Home() {
       }
     } catch (error) {
       setModalTitle('Aviso')
-      setModalText('O número introduzido não foi confirmado.')
+      setModalText('O número introduzido não foi confirmado!')
       setShowModal(true)
       setIsSpinning(false)
       return
@@ -76,8 +98,7 @@ export default function Home() {
   ]
 
   function checkNumber() {
-    const regex = /(^.[^0-9\s]+)|([^0-9\s])/
-    return regex.test(phoneNumber)
+    return phoneNumber.length === 9 || phoneNumber.length === 13;
   }
 
   function play() {
@@ -89,13 +110,6 @@ export default function Home() {
       setIsSpinning(false)
       return
     }
-    /* if (checkNumber() || phoneNumber === '') {
-      setModalTitle('Aviso')
-      setModalText('The Phone number is not valid.')
-      setShowModal(true)
-      setIsSpinning(false)
-      return
-    } */
     const selectedSlice = Math.floor(Math.random() * 12)
     let roletaElement = document.getElementById('roulette-container')
     if (!roletaElement) return
@@ -159,7 +173,7 @@ export default function Home() {
         <div className='arrow'></div>
         <div
           id='roulette-container'
-          className='roulette-container w-[300px] h-[300px] rounded-[50%] relative overflow-hidden border-[3px] border-white mb-8 transition-[transform] duration-[3000ms] ease-in-out'
+          className='roulette-container w-[18rem] h-[18rem] rounded-[50%] relative overflow-hidden border-[3px] border-white mb-8 transition-[transform] duration-[3000ms] ease-in-out'
         >
           <div className='absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] bg-black rounded-full z-[2] flex justify-center items-center w-[6.5rem] h-[6.5rem]'>
             <img
@@ -174,7 +188,7 @@ export default function Home() {
               className={`pizza-slice ${slice.result}`}
               style={{ transform: `rotate(${30 * index}deg)` }}
             >
-              <span>{slice.content}</span>
+              <span className='text-[.8rem]'>{slice.content}</span>
             </div>
           ))}
         </div>
@@ -189,7 +203,7 @@ export default function Home() {
         {!otpConfirm ? (
           <input
             type='tel'
-            placeholder='+351 | Número de telemóvel'
+            placeholder='Número de telemóvel'
             value={phoneNumber}
             onChange={(e) => setPhoneNumber(e.target.value)}
             className='w-full px-4 py-2 outline-none border-2 border-white rounded-full bg-[transparent] '
@@ -198,7 +212,7 @@ export default function Home() {
           <input
             type='number'
             pattern='\d*'
-            placeholder='| Código de Confirmação'
+            placeholder='Código de Confirmação'
             value={otp}
             onChange={(e) => setOtp(e.target.value)}
             className='w-full px-4 py-2 outline-none border-2 border-white rounded-full bg-[transparent] '
@@ -252,7 +266,7 @@ export default function Home() {
       <p className=''>
         Powered by{' '}
         <a href='https://visiond.pt' className='text-[var(--primary)]'>
-          Vision D
+          Brandfeels
         </a>
       </p>
     </div>
