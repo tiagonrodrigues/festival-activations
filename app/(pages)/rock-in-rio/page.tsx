@@ -83,13 +83,13 @@ export default function Home() {
 
   // Isto deve vir da DB, por enquanto esta hardcoded
   const slices = [
-    { id: 'slice-1', content: '5% desconto', result: 'medium', angle: 60 },
+    { id: 'slice-1', content: '1 bilhete', result: 'medium', angle: 60 },
     { id: 'slice-2', content: 'Ups...', result: '', angle: 30 },
-    { id: 'slice-3', content: '15% desconto', result: 'premio', angle: 0 },
+    { id: 'slice-3', content: '5% desconto', result: 'medium', angle: 0 },
     { id: 'slice-4', content: 'Ups...', result: '', angle: 330 },
     { id: 'slice-5', content: '5% desconto', result: 'medium', angle: 300 },
     { id: 'slice-6', content: 'Ups...', result: '', angle: 270 },
-    { id: 'slice-7', content: '5% desconto', result: 'medium', angle: 240 },
+    { id: 'slice-7', content: '1 bilhete', result: 'medium', angle: 240 },
     { id: 'slice-8', content: 'Ups...', result: '', angle: 210 },
     { id: 'slice-9', content: '5% desconto', result: 'medium', angle: 180 },
     { id: 'slice-10', content: 'Ups...', result: '', angle: 150 },
@@ -119,7 +119,7 @@ export default function Home() {
     setTimeout(() => {
       setIsSpinning(false)
       setModalCloseFunction(() => () => {
-        window.location.href = 'https://musicanocoracao.pt'
+        window.location.href = 'https://rockinriolisboa.pt/pt/home'
       })
       if (
         slices[selectedSlice].result === 'medium' ||
@@ -143,14 +143,14 @@ export default function Home() {
   }, [])
 
   return (
-    <div className='flex flex-col gap-4 py-8'>
+    <div className='game flex flex-col gap-4 py-8'>
       <div
         id='modal'
         className={`${
           showModal ? 'fixed' : 'hidden'
         } z-[10] left-0 top-0 w-full h-full bg-[rgba(0,0,0,.7)]`}
       >
-        <div className='absolute left-1/2 top-1/2 translate-y-[-50%] translate-x-[-50%] bg-[var(--primary)] w-[16rem] aspect-square flex flex-col gap-8 rounded-[25px] items-center justify-center px-4'>
+        <div className='absolute left-1/2 top-1/2 translate-y-[-50%] translate-x-[-50%] bg-[var(--rockInRio)] w-[16rem] aspect-square flex flex-col gap-8 rounded-[25px] items-center justify-center px-4'>
           <p id='modal-title'>{modalTitle}</p>
           <p id='modal-text'>{modalText}</p>
           <button
@@ -164,9 +164,9 @@ export default function Home() {
       </div>
       <div className='flex justify-center w-full mb-2'>
         <img
-          src='/content/logos/musicaNoCoracao.png'
+          src='/content/logos/rockinrio.png'
           alt='logo'
-          className='w-[5rem] relative left-1'
+          className='w-[6rem] relative left-1'
         />
       </div>
       <div className='relative roleta-container'>
@@ -177,9 +177,9 @@ export default function Home() {
         >
           <div className='absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] bg-black rounded-full z-[2] flex justify-center items-center w-[6.5rem] h-[6.5rem]'>
             <img
-              src='/content/logos/icon.png'
+              src='/content/logos/rockinrio2.png'
               alt='icon'
-              className='w-[3rem]'
+              className='w-[5rem]'
             />
           </div>
           {slices.map((slice: any, index: number) => (
@@ -188,17 +188,17 @@ export default function Home() {
               className={`pizza-slice ${slice.result}`}
               style={{ transform: `rotate(${30 * index}deg)` }}
             >
-              <span className='text-[.8rem]'>{slice.content}</span>
+              <span className='!text-[.6rem]'>{slice.content}</span>
             </div>
           ))}
         </div>
       </div>
       <div className=' flex flex-col gap-4 w-[18rem] text-[.8rem] px-4'>
         <p className='uppercase'>
-          <span className='text-[var(--primary)]'>Preenche</span> abaixo e{' '}
-          <span className='text-[var(--primary)]'>concorre</span> a um dos
+          <span className='text-[var(--rockInRio)]'>Preenche</span> abaixo e{' '}
+          <span className='text-[var(--rockInRio)]'>concorre</span> a um dos
           nossos incríveis{' '}
-          <span className='text-[var(--primary)]'>prêmios</span>!
+          <span className='text-[var(--rockInRio)]'>prêmios</span>!
         </p>
         {!otpConfirm ? (
           <input
@@ -221,7 +221,7 @@ export default function Home() {
       </div>
       <div className='flex items-center justify-center w-full gap-4'>
         <div
-          className='relative w-5 h-5 rounded-[5px] bg-[var(--primary)] cursor-pointer'
+          className='relative w-5 h-5 rounded-[5px] bg-[var(--rockInRio)] cursor-pointer'
           onClick={() => setTerms(!terms)}
         >
           <img
@@ -242,7 +242,7 @@ export default function Home() {
       <div className='w-full'>
         {otpConfirm ? (
           <button
-            className='px-8 border-2 border-white rounded-[20px] py-2 text-[.9rem] transition-all duration-300 hover:bg-[var(--primary)] cursor-pointer'
+            className='px-8 border-2 border-white rounded-[20px] py-2 text-[.9rem] transition-all duration-300 hover:bg-[var(--rockInRio)] cursor-pointer'
             onClick={verifyOtp}
             disabled={isSpinning}
           >
@@ -250,7 +250,7 @@ export default function Home() {
           </button>
         ) : (
           <button
-            className='px-8 border-2 border-white rounded-[20px] py-2 text-[.9rem] transition-all duration-300 hover:bg-[var(--primary)] cursor-pointer'
+            className='px-8 border-2 border-white rounded-[20px] py-2 text-[.9rem] transition-all duration-300 hover:bg-[var(--rockInRio)] cursor-pointer'
             onClick={sendOtp}
           >
             CONFIRMAR NUMERO
@@ -258,14 +258,14 @@ export default function Home() {
         )}
       </div>
       <a
-        href='https://www.musicanocoracao.pt'
+        href='https://www.rockInRio.pt'
         className='text-white hover:underline'
       >
-        Ver <span className='text-[var(--primary)]'>marca</span>
+        Ver <span className='text-[var(--rockInRio)]'>marca</span>
       </a>
       <p className=''>
         Powered by{' '}
-        <a href='https://visiond.pt' className='text-[var(--primary)]'>
+        <a href='https://brandfeels.com' className='text-[var(--rockInRio)]'>
           Brandfeels
         </a>
       </p>

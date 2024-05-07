@@ -84,7 +84,7 @@ body, html {
 }
 
 .pizza-slice:nth-child(2n) {
-  background-color: var(--primary);
+  background-color: var(--musicaNoCoracao);
 }
 
 .pizza-slice.premio {

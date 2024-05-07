@@ -22,7 +22,8 @@ body, html {
   width: 100%;
   height: 100%;
   font-family: Lovelo, 'Arial', sans-serif;
-  background-color: #333;
+  background-image: radial-gradient(circle, #111146 15%, #3633ca);
+  background-size: cover;
   margin: 0;
   padding: 0;
   display: flex;
@@ -84,7 +85,7 @@ body, html {
 }
 
 .pizza-slice:nth-child(2n) {
-  background-color: var(--primary);
+  background-color: var(--rockInRio);
 }
 
 .pizza-slice.premio {
