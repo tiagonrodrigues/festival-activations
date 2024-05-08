@@ -11,40 +11,10 @@
   src: url("/content/Lovelo-Black.ttf");
 }
 
-:root {
-  --brandfeels: #8c52ff;
-  --secondary: #ffd04c;
-  --musicaNoCoracao: #e06990;
-  --rockInRio: #5da5f1;
-}
-
-body, html {
-  width: 100%;
-  height: 100%;
-  font-family: Lovelo, 'Arial', sans-serif;
+.game {
   background-image: radial-gradient(circle, #111146 15%, #3633ca);
   background-size: cover;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  overflow-x: hidden;
-  scrollbar-width: 0;
-  text-align: center;
-  background-color: black;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
-  color: white;
-}
-
-::-webkit-scrollbar {
-  display: none;
-}
-
-* {
-  font-family: Lovelo, 'Arial', sans-serif;
-  margin: 0;
-  padding: 0;
+  background-repeat: no-repeat;
 }
 
 .container {
@@ -82,14 +52,6 @@ body, html {
   transform-origin: 100% 50%;
   transform: rotate(var(--rotate));
   z-index: 1;
-}
-
-.pizza-slice:nth-child(2n) {
-  background-color: var(--rockInRio);
-}
-
-.pizza-slice.premio {
-  background-color: var(--secondary) !important;
 }
 
 .pizza-slice span {
