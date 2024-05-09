@@ -33,19 +33,25 @@ export default function Home() {
       setShowModal(true)
       return
     }
+    setOtpConfirm(true)
     try {
       let number = phoneNumber
       // If number doesnt start with +351, add it
       if (number.length === 9) {
         number = '+351' + number
       }
-      const response = await fetch('/api/sendOtp', {
+      await fetch('/api/sendOtp', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ phoneNumber: number })
       })
-      setOtpConfirm(true)
-    } catch (error) { }
+    } catch (error) {
+      setModalTitle('Aviso')
+      setModalText('Ocorreu um erro, tente mais tarde')
+      setShowModal(true)
+      setIsSpinning(false)
+      return
+    }
   }
 
   const verifyOtp = async () => {
@@ -60,14 +66,14 @@ export default function Home() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ phoneNumber: number, otp })
       })
-      if (response.status !== 200) {
+      if (response.status === 200) {
+        play()
+      } else {
         setModalTitle('Aviso')
         setModalText('O número introduzido não foi confirmado!')
         setShowModal(true)
         setIsSpinning(false)
         return
-      } else {
-        play()
       }
     } catch (error) {
       setModalTitle('Aviso')
@@ -209,7 +215,7 @@ export default function Home() {
             />
           ) : (
             <input
-              type='number'
+              type='tel'
               pattern='\d*'
               placeholder='Código de Confirmação'
               value={otp}
@@ -249,7 +255,7 @@ export default function Home() {
           ) : (
             <button
               className='px-8 border-2 border-white rounded-[20px] py-2 text-[.9rem] transition-all duration-300 hover:bg-[var(--rockInRio)] cursor-pointer'
-              onClick={play}
+              onClick={sendOtp}
             >
               CONFIRMAR NUMERO
             </button>

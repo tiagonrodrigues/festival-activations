@@ -1,12 +1,13 @@
 'use client'
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import QRCode from 'react-qr-code';
 import emailjs from 'emailjs-com';
 import './style.css';
 
 export default function Winner() {
     const [email, setEmail] = useState('')
+    const [code, setCode] = useState('');
     const [showModal, setShowModal] = useState(false)
     const [modalTitle, setModalTitle] = useState('')
     const [modalText, setModalText] = useState('')
@@ -15,6 +16,16 @@ export default function Winner() {
             setShowModal(false)
         }
     )
+
+    useEffect(() => {
+        // Generate random 8 alphanum code
+        const charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+        let code = '';
+        for (let i = 0; i < 7; i++) {
+            code += charset.charAt(Math.floor(Math.random() * charset.length));
+        }
+        setCode(code);
+    }, []);
 
     const sendEmail = () => {
         if (email === '' || !email.match(/^[^ ]+@[^ ]+\.[a-z]{2,3}$/)) {
@@ -25,7 +36,7 @@ export default function Winner() {
             })
             setShowModal(true)
         } else {
-            emailjs.send('service_r8nvjhv', 'template_feazdz1', {email}, 'jeStFGZ-400kFvT_-');
+            emailjs.send('service_r8nvjhv', 'template_feazdz1', { email }, 'jeStFGZ-400kFvT_-');
             setModalTitle('AVISO')
             setModalText('O prémio foi enviado para o seu email.')
             setModalCloseFunction(() => () => {
@@ -46,6 +57,16 @@ export default function Winner() {
         link.href = '/PREMIO.pdf';
         link.download = 'PREMIO.pdf';
         link.click();
+    }
+
+    if (!code) {
+        return (
+            <div className='bg w-full py-8 flex justify-center h-full items-center'>
+                <div className='w-[18rem] flex flex-col gap-8 items-center'>
+                    <p>A carregar...</p>
+                </div>
+            </div>
+        )
     }
 
     return (
@@ -84,11 +105,11 @@ export default function Winner() {
                                 <QRCode
                                     size={256}
                                     style={{ height: "auto", maxWidth: "100%", width: "100%" }}
-                                    value={`92J3HR2`}
+                                    value={code}
                                     viewBox={`0 0 256 256`}
                                 />
                             </div>
-                            <p className='text-[.5rem]'>92J3HR2</p>
+                            <p className='text-[.5rem]'>{code}</p>
                             <div className='h-[6px] w-[4rem] bg-[var(--brandfeels)]'></div>
                         </div>
                     </div>
