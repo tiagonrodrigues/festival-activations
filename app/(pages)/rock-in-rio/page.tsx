@@ -1,13 +1,13 @@
 'use client'
 
 import React, { useEffect, useState } from 'react'
-
+import { useRouter } from 'next/navigation'
 import './globals.css'
 
 export default function Home() {
+  const router = useRouter()
   const [otp, setOtp] = useState('')
   const [otpConfirm, setOtpConfirm] = useState(false)
-  const [message, setMessage] = useState('')
   const [terms, setTerms] = useState(false)
   const [isSpinning, setIsSpinning] = useState(false)
   const [phoneNumber, setPhoneNumber] = useState('')
@@ -78,10 +78,6 @@ export default function Home() {
     }
   }
 
-  // const [brand, setBrand] = useState('');
-  // const [roulette, setRoulette] = useState('');
-
-  // Isto deve vir da DB, por enquanto esta hardcoded
   const slices = [
     { id: 'slice-1', content: '1 bilhete', result: 'medium', angle: 60 },
     { id: 'slice-2', content: 'Ups...', result: '', angle: 30 },
@@ -110,16 +106,14 @@ export default function Home() {
       setIsSpinning(false)
       return
     }
-    const selectedSlice = Math.floor(Math.random() * 12)
+    const selectedSlice = 4;
+    // const selectedSlice = Math.floor(Math.random() * 12)
     let roletaElement = document.getElementById('roulette-container')
     if (!roletaElement) return
     roletaElement.style.transform = `rotate(${slices[selectedSlice].angle + 720
       }deg)`
     setTimeout(() => {
       setIsSpinning(false)
-      setModalCloseFunction(() => () => {
-        window.location.href = 'https://rockinriolisboa.pt/pt/home'
-      })
       if (
         slices[selectedSlice].result === 'medium' ||
         slices[selectedSlice].result === 'premio'
@@ -128,9 +122,15 @@ export default function Home() {
         setModalText(
           `Ganhaste ${slices[selectedSlice].content} no próximo bilhete que comprares!`
         )
+        setModalCloseFunction(() => () => {
+          router.push('/rock-in-rio/winner');
+        })
       } else {
-        setModalTitle('Ups...')
-        setModalText('Tenta novamente em breve')
+        setModalTitle('Ups...');
+        setModalText('Tenta novamente em breve');
+        setModalCloseFunction(() => () => {
+          window.location.href = 'https://rockinriolisboa.pt/pt/home'
+        })
       }
       setShowModal(true)
       setIsSpinning(false)
@@ -230,9 +230,9 @@ export default function Home() {
                 } invert relative top-[-3px] right-[-3px]`}
             />
           </div>
-          <p onClick={() => window.open('../../content/T&C.pdf')}>
+          <button onClick={() => window.open('../../content/T&C.pdf')} className='hover:underline '>
             Termos e Condições
-          </p>
+          </button>
         </div>
         <div className='premio-section'>
           <span id='premio' className='bg-[var(--secondary)]'></span>
@@ -249,7 +249,7 @@ export default function Home() {
           ) : (
             <button
               className='px-8 border-2 border-white rounded-[20px] py-2 text-[.9rem] transition-all duration-300 hover:bg-[var(--rockInRio)] cursor-pointer'
-              onClick={sendOtp}
+              onClick={play}
             >
               CONFIRMAR NUMERO
             </button>

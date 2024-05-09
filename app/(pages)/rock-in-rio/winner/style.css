@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+@font-face {
+  font-family: "Lovelo";
+  src: url("/content/Lovelo-Black.ttf");
+}
+
+.bg {
+  background-image: radial-gradient(circle, #111146 15%, #3633ca);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+#modal-text {
+  text-wrap: balance;
+}
