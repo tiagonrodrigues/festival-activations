@@ -66,7 +66,7 @@ export default function Home() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ phoneNumber: number, otp })
       })
-      if (response.status === 200) {
+      if (response.status === 201) {
         play()
       } else {
         setModalTitle('Aviso')
@@ -250,7 +250,7 @@ export default function Home() {
               onClick={verifyOtp}
               disabled={isSpinning}
             >
-              TESTA A TUA SORTE
+              TESTA A TUA SORTE!
             </button>
           ) : (
             <button

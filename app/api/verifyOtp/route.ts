@@ -20,7 +20,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
       .verificationChecks.create({ to: phoneNumber, code: otp })
 
     if (verificationCheck.status === 'approved') {
-      return NextResponse.json({ message: 'sucess', status: 200 })
+      return NextResponse.json({ message: 'success', status: 201 })
     } else {
       return NextResponse.json({ message: 'ardeu', status: 400 })
     }
