@@ -13,15 +13,25 @@ export async function POST(req: NextRequest, res: NextResponse) {
     throw new Error('TWILIO_VERIFY_SID is not defined')
   }
 
+  console.log('Verifying OTP', otp, 'for', phoneNumber)
+
   try {
     const verification_check = await client.verify.v2
       .services(verifySid)
       .verificationChecks.create({ to: phoneNumber, code: otp })
 
-    console.log(verification_check.status)
+    console.log('Verification status:', verification_check.status)
+
+    if (verification_check.status === 'approved') {
+      return NextResponse.json({
+        message: 'OTP verified successfully',
+        status: 200
+      })
+    }
+
     return NextResponse.json({
-      message: 'OTP verified successfully',
-      status: 200
+      message: 'OTP verification failed',
+      status: 400
     })
   } catch (error) {
     console.error('Failed to verify OTP', error)
