@@ -74,6 +74,7 @@ export default function Home() {
         return
       } else {
         play()
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     } catch (error) {
       setModalTitle('Aviso')
