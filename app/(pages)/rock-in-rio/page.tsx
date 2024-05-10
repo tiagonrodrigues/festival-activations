@@ -73,8 +73,8 @@ export default function Home() {
         setIsSpinning(false)
         return
       } else {
-        play()
         window.scrollTo({ top: 0, behavior: 'smooth' });
+        play()
       }
     } catch (error) {
       setModalTitle('Aviso')
