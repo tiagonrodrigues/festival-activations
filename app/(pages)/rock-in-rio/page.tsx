@@ -66,14 +66,14 @@ export default function Home() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ phoneNumber: number, otp })
       })
-      if (response.status === 201) {
-        play()
-      } else {
+      if (response.status !== 200) {
         setModalTitle('Aviso')
         setModalText('O número introduzido não foi confirmado!')
         setShowModal(true)
         setIsSpinning(false)
         return
+      } else {
+        play()
       }
     } catch (error) {
       setModalTitle('Aviso')
