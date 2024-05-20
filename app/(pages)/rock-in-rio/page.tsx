@@ -66,16 +66,18 @@ export default function Home() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ phoneNumber: number, otp })
       })
-      if (response.status !== 200) {
+
+      const data = await response.json()
+
+      if (data.status !== 200) {
         setModalTitle('Aviso')
         setModalText('O número introduzido não foi confirmado!')
         setShowModal(true)
         setIsSpinning(false)
         return
-      } else {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-        play()
       }
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+      play()
     } catch (error) {
       setModalTitle('Aviso')
       setModalText('O número introduzido não foi confirmado!')
@@ -113,12 +115,13 @@ export default function Home() {
       setIsSpinning(false)
       return
     }
-    const selectedSlice = 4;
+    const selectedSlice = 4
     // const selectedSlice = Math.floor(Math.random() * 12)
     let roletaElement = document.getElementById('roulette-container')
     if (!roletaElement) return
-    roletaElement.style.transform = `rotate(${slices[selectedSlice].angle + 720
-      }deg)`
+    roletaElement.style.transform = `rotate(${
+      slices[selectedSlice].angle + 720
+    }deg)`
     setTimeout(() => {
       setIsSpinning(false)
       if (
@@ -130,11 +133,11 @@ export default function Home() {
           `Ganhaste ${slices[selectedSlice].content} no próximo bilhete que comprares!`
         )
         setModalCloseFunction(() => () => {
-          router.push('/rock-in-rio/winner');
+          router.push('/rock-in-rio/winner')
         })
       } else {
-        setModalTitle('Ups...');
-        setModalText('Tenta novamente em breve');
+        setModalTitle('Ups...')
+        setModalText('Tenta novamente em breve')
         setModalCloseFunction(() => () => {
           window.location.href = 'https://rockinriolisboa.pt/pt/home'
         })
@@ -153,8 +156,9 @@ export default function Home() {
       <div className='w-[15rem] flex flex-col gap-4 items-center'>
         <div
           id='modal'
-          className={`${showModal ? 'fixed' : 'hidden'
-            } z-[10] left-0 top-0 w-full h-full bg-[rgba(0,0,0,.7)]`}
+          className={`${
+            showModal ? 'fixed' : 'hidden'
+          } z-[10] left-0 top-0 w-full h-full bg-[rgba(0,0,0,.7)]`}
         >
           <div className='absolute left-1/2 top-1/2 translate-y-[-50%] translate-x-[-50%] bg-[var(--rockInRio)] w-[16rem] aspect-square flex flex-col gap-8 rounded-[25px] items-center justify-center px-4'>
             <p id='modal-title'>{modalTitle}</p>
@@ -192,7 +196,15 @@ export default function Home() {
               <div
                 key={index}
                 className={`pizza-slice ${slice.result}`}
-                style={{ transform: `rotate(${30 * index}deg)`, backgroundColor: slice.result === 'premio' ? '#ffd04c' : index % 2 === 0 ? '#5da5f1' : 'auto'}}
+                style={{
+                  transform: `rotate(${30 * index}deg)`,
+                  backgroundColor:
+                    slice.result === 'premio'
+                      ? '#ffd04c'
+                      : index % 2 === 0
+                      ? '#5da5f1'
+                      : 'auto'
+                }}
               >
                 <span className='!text-[.6rem]'>{slice.content}</span>
               </div>
@@ -233,11 +245,15 @@ export default function Home() {
             <img
               src='/content/imgs/check-mark.png'
               alt='check'
-              className={`${!terms ? 'hidden' : 'flex'
-                } invert relative top-[-3px] right-[-3px]`}
+              className={`${
+                !terms ? 'hidden' : 'flex'
+              } invert relative top-[-3px] right-[-3px]`}
             />
           </div>
-          <button onClick={() => window.open('../../content/T&C.pdf')} className='hover:underline '>
+          <button
+            onClick={() => window.open('../../content/T&C.pdf')}
+            className='hover:underline '
+          >
             Termos e Condições
           </button>
         </div>

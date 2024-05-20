@@ -1,4 +1,3 @@
-// This is the route file for the sendOtp API endpoint.
 import { NextRequest, NextResponse } from 'next/server'
 import twilio from 'twilio'
 
@@ -14,13 +13,20 @@ export async function POST(req: NextRequest, res: NextResponse) {
     throw new Error('TWILIO_VERIFY_SID is not defined')
   }
 
-  const verificationCheck = await client.verify.v2
-    .services(verifySid)
-    .verifications.create({ to: phoneNumber, channel: 'sms' })
-
-  if (verificationCheck.status === 'approved') {
-    return NextResponse.json({ message: 'sucess', status: 200 })
-  } else {
-    return NextResponse.json({ message: 'ardeu', status: 400 })
+  try {
+    const verification = await client.verify.v2
+      .services(verifySid)
+      .verifications.create({ to: phoneNumber, channel: 'sms' })
+    console.log(verification.status)
+    return NextResponse.json({
+      status: 200,
+      message: 'OTP sent successfully'
+    })
+  } catch (error) {
+    console.error('Failed to send OTP', error)
+    return NextResponse.json({
+      message: 'Failed to send OTP',
+      status: 500
+    })
   }
 }
