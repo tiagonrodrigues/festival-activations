@@ -3,8 +3,10 @@
 import React, { useEffect, useState } from 'react'
 
 import './globals.css'
+import { useRouter } from 'next/navigation'
 
 export default function Home() {
+  const router = useRouter()
   const [otp, setOtp] = useState('')
   const [otpConfirm, setOtpConfirm] = useState(false)
   const [message, setMessage] = useState('')
@@ -27,6 +29,8 @@ export default function Home() {
       setShowModal(true)
       return
     }
+    play()
+    return ;
     if (!checkNumber()) {
       setModalTitle('Aviso')
       setModalText('Por favor insira um número de telemóvel válido.')
@@ -83,18 +87,18 @@ export default function Home() {
 
   // Isto deve vir da DB, por enquanto esta hardcoded
   const slices = [
-    { id: 'slice-1', content: '5% desconto', result: 'medium', angle: 60 },
+    { id: 'slice-1', content: 'Nortadas', result: 'medium', angle: 60 },
     { id: 'slice-2', content: 'Ups...', result: '', angle: 30 },
-    { id: 'slice-3', content: '15% desconto', result: 'premio', angle: 0 },
+    { id: 'slice-3', content: 'Garrafa Ermelinda', result: 'premio', angle: 0 },
     { id: 'slice-4', content: 'Ups...', result: '', angle: 330 },
-    { id: 'slice-5', content: '5% desconto', result: 'medium', angle: 300 },
-    { id: 'slice-6', content: 'Ups...', result: '', angle: 270 },
-    { id: 'slice-7', content: '5% desconto', result: 'medium', angle: 240 },
+    { id: 'slice-5', content: 'Licôr Beirão', result: 'medium', angle: 300 },
+    { id: 'slice-6', content: 'Nortadas', result: 'medium', angle: 270 },
+    { id: 'slice-7', content: 'Medronho', result: 'medium', angle: 240 },
     { id: 'slice-8', content: 'Ups...', result: '', angle: 210 },
-    { id: 'slice-9', content: '5% desconto', result: 'medium', angle: 180 },
+    { id: 'slice-9', content: 'Nortadas', result: 'medium', angle: 180 },
     { id: 'slice-10', content: 'Ups...', result: '', angle: 150 },
-    { id: 'slice-11', content: '5% desconto', result: 'medium', angle: 120 },
-    { id: 'slice-12', content: 'Ups...', result: '', angle: 90 }
+    { id: 'slice-11', content: 'Medronho', result: 'medium', angle: 120 },
+    { id: 'slice-12', content: 'Licôr Beirão', result: 'medium', angle: 90 }
   ]
 
   function checkNumber() {
@@ -117,20 +121,23 @@ export default function Home() {
       }deg)`
     setTimeout(() => {
       setIsSpinning(false)
-      setModalCloseFunction(() => () => {
-        window.location.href = 'https://musicaNoCoracao.pt'
-      })
       if (
         slices[selectedSlice].result === 'medium' ||
         slices[selectedSlice].result === 'premio'
       ) {
         setModalTitle('Parabéns!')
         setModalText(
-          `Ganhaste ${slices[selectedSlice].content} no próximo bilhete que comprares!`
+          `Ganhaste um ${slices[selectedSlice].content}!`
         )
+        setModalCloseFunction(() => () => {
+          router.push('/winner');
+        })
       } else {
-        setModalTitle('Ups...')
-        setModalText('Tenta novamente em breve')
+        setModalTitle('Ups...');
+        setModalText('Tenta novamente em breve');
+        setModalCloseFunction(() => () => {
+          // window.location.href = 'https://musicaNoCoracao.pt'
+        })
       }
       setShowModal(true)
       setIsSpinning(false)
@@ -138,7 +145,7 @@ export default function Home() {
   }
 
   return (
-    <div className='py-8 bg-black w-full flex justify-center'>
+    <div className='game py-8 bg-black w-full flex justify-center'>
       <div className='w-[15rem] flex flex-col items-center gap-4'>
         <div
           id='modal'

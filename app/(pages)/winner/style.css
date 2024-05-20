@@ -11,11 +11,11 @@
   src: url("/content/Lovelo-Black.ttf");
 }
 
-.bg {
+/* .bg {
   background-image: radial-gradient(circle, #111146 15%, #3633ca);
   background-size: cover;
   background-repeat: no-repeat;
-}
+} */
 
 #modal-text {
   text-wrap: balance;
