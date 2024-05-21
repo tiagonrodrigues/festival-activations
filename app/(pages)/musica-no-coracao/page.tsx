@@ -89,13 +89,13 @@ export default function Home() {
   const slices = [
     { id: 'slice-1', content: 'Nortadas', result: 'medium', angle: 60 },
     { id: 'slice-2', content: 'Ups...', result: '', angle: 30 },
-    { id: 'slice-3', content: 'Garrafa Ermelinda', result: 'premio', angle: 0 },
+    { id: 'slice-3', content: 'Bilhete Gratuito', result: 'premio', angle: 0 },
     { id: 'slice-4', content: 'Ups...', result: '', angle: 330 },
     { id: 'slice-5', content: 'Licôr Beirão', result: 'medium', angle: 300 },
     { id: 'slice-6', content: 'Nortadas', result: 'medium', angle: 270 },
     { id: 'slice-7', content: 'Medronho', result: 'medium', angle: 240 },
     { id: 'slice-8', content: 'Ups...', result: '', angle: 210 },
-    { id: 'slice-9', content: 'Nortadas', result: 'medium', angle: 180 },
+    { id: 'slice-9', content: 'Garrafa Ermelinda', result: 'medium', angle: 180 },
     { id: 'slice-10', content: 'Ups...', result: '', angle: 150 },
     { id: 'slice-11', content: 'Medronho', result: 'medium', angle: 120 },
     { id: 'slice-12', content: 'Licôr Beirão', result: 'medium', angle: 90 }
@@ -117,7 +117,7 @@ export default function Home() {
     const selectedSlice = Math.floor(Math.random() * 12)
     let roletaElement = document.getElementById('roulette-container')
     if (!roletaElement) return
-    roletaElement.style.transform = `rotate(${slices[selectedSlice].angle + 720
+    roletaElement.style.transform = `rotate(${slices[selectedSlice].angle + 2160
       }deg)`
     setTimeout(() => {
       setIsSpinning(false)
@@ -136,12 +136,12 @@ export default function Home() {
         setModalTitle('Ups...');
         setModalText('Tenta novamente em breve');
         setModalCloseFunction(() => () => {
-          // window.location.href = 'https://musicaNoCoracao.pt'
+          window.location.reload();
         })
       }
       setShowModal(true)
       setIsSpinning(false)
-    }, 3100)
+    }, 5100)
   }
 
   return (
@@ -175,7 +175,7 @@ export default function Home() {
           <div className='arrow'></div>
           <div
             id='roulette-container'
-            className='roulette-container w-[18rem] h-[18rem] rounded-[50%] relative overflow-hidden border-[3px] border-white mb-8 transition-[transform] duration-[3000ms] ease-in-out'
+            className='roulette-container w-[18rem] h-[18rem] rounded-[50%] relative overflow-hidden border-[3px] border-white mb-8 transition-[transform] duration-[5000ms] ease-in-out'
           >
             <div className='absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] bg-black rounded-full z-[2] flex justify-center items-center w-[6.5rem] h-[6.5rem]'>
               <img
