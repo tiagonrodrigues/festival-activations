@@ -91,13 +91,13 @@ export default function Home() {
     { id: 'slice-2', content: '', img: "superbock.png", result: '', angle: 30 },
     { id: 'slice-3', content: 'Garrafa Ermelinda', result: 'premio', angle: 0 },
     { id: 'slice-4', content: '', img: "sumol.jpg", result: '', angle: 330 },
-    { id: 'slice-5', content: 'Power Bank', result: 'medium', angle: 300 },
+    { id: 'slice-5', content: 'Medronho', result: 'medium', angle: 300 },
     { id: 'slice-6', content: 'Tote Bag', result: 'medium', angle: 270 },
     { id: 'slice-7', content: 'Nortadas', result: 'medium', angle: 240 },
     { id: 'slice-8', content: '', img: "ermelinda.png", result: '', angle: 210 },
-    { id: 'slice-9', content: 'Medronho', result: 'medium', angle: 180 },
+    { id: 'slice-9', content: 'Garrafa Ermelinda', result: 'medium', angle: 180 },
     { id: 'slice-10', content: '', img: "santacasa.png", result: '', angle: 150 },
-    { id: 'slice-11', content: 'Power Bank', result: 'medium', angle: 120 },
+    { id: 'slice-11', content: 'Medronho', result: 'medium', angle: 120 },
     { id: 'slice-12', content: 'Tote Bag', result: 'medium', angle: 90 }
   ]
 
