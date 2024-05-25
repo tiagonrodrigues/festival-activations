@@ -88,17 +88,17 @@ export default function Home() {
   // Isto deve vir da DB, por enquanto esta hardcoded
   const slices = [
     { id: 'slice-1', content: 'Nortadas', result: 'medium', angle: 60 },
-    { id: 'slice-2', content: 'Ups...', result: '', angle: 30 },
-    { id: 'slice-3', content: 'Bilhete Gratuito', result: 'premio', angle: 0 },
-    { id: 'slice-4', content: 'Ups...', result: '', angle: 330 },
-    { id: 'slice-5', content: 'Licôr Beirão', result: 'medium', angle: 300 },
-    { id: 'slice-6', content: 'Nortadas', result: 'medium', angle: 270 },
-    { id: 'slice-7', content: 'Medronho', result: 'medium', angle: 240 },
-    { id: 'slice-8', content: 'Ups...', result: '', angle: 210 },
-    { id: 'slice-9', content: 'Garrafa Ermelinda', result: 'medium', angle: 180 },
-    { id: 'slice-10', content: 'Ups...', result: '', angle: 150 },
-    { id: 'slice-11', content: 'Medronho', result: 'medium', angle: 120 },
-    { id: 'slice-12', content: 'Licôr Beirão', result: 'medium', angle: 90 }
+    { id: 'slice-2', content: '', img: "superbock.png", result: '', angle: 30 },
+    { id: 'slice-3', content: 'Garrafa Ermelinda', result: 'premio', angle: 0 },
+    { id: 'slice-4', content: '', img: "sumol.jpg", result: '', angle: 330 },
+    { id: 'slice-5', content: 'Power Bank', result: 'medium', angle: 300 },
+    { id: 'slice-6', content: 'Tote Bag', result: 'medium', angle: 270 },
+    { id: 'slice-7', content: 'Nortadas', result: 'medium', angle: 240 },
+    { id: 'slice-8', content: '', img: "ermelinda.png", result: '', angle: 210 },
+    { id: 'slice-9', content: 'Medronho', result: 'medium', angle: 180 },
+    { id: 'slice-10', content: '', img: "santacasa.png", result: '', angle: 150 },
+    { id: 'slice-11', content: 'Power Bank', result: 'medium', angle: 120 },
+    { id: 'slice-12', content: 'Tote Bag', result: 'medium', angle: 90 }
   ]
 
   function checkNumber() {
@@ -171,7 +171,8 @@ export default function Home() {
             className='w-[5rem] relative left-1'
           />
         </div>
-        <div className='relative roleta-container'>
+        <h1>Medronho Fest - Demo</h1>
+        <div className='relative roleta-container mt-4'>
           <div className='arrow'></div>
           <div
             id='roulette-container'
@@ -190,7 +191,12 @@ export default function Home() {
                 className={`pizza-slice ${slice.result}`}
                 style={{ transform: `rotate(${30 * index}deg)`, backgroundColor: slice.result === 'premio' ? '#ffd04c' : index % 2 === 0 ? '#e06990' : 'auto'}}
               >
-                <span className='text-[.8rem]'>{slice.content}</span>
+                {
+                  slice.content === '' ?
+                  <img src={`/content/logos/${slice.img}`} alt="logo" className='w-[3.4rem]' />
+                  :
+                  <span className='text-[.8rem]'>{slice.content}</span>
+                }
               </div>
             ))}
           </div>
