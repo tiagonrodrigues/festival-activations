@@ -28,13 +28,10 @@ export default function Links() {
                     <button onClick={() => window.open("https://demo.brandfeels.com/musica-no-coracao/", '_blank')} className='relative bg-[#8c52ff] rounded-full h-[3.5rem] w-full flex justify-center items-center cursor-pointer hover:bg-[transparent] transition-all duration-300 ease border-2 border-[#8c52ff]'>
                         <p>Demonstração</p>
                     </button>
-                    <button onClick={() => window.open("https://outlook.office365.com/owa/calendar/StartupsSessionsFundingatWebsummit@visiond.pt/bookings/", '_blank')} className='relative bg-[#8c52ff] rounded-full h-[3.5rem] w-full flex justify-center items-center cursor-pointer hover:bg-[transparent] transition-all duration-300 ease border-2 border-[#8c52ff]'>
-                        <p>Marcar reunião</p>
-                    </button>
-                    <button className='relative bg-[#8c52ff] rounded-full h-[3.5rem] w-full flex justify-center items-center cursor-pointer hover:bg-[transparent] transition-all duration-300 ease border-2 border-[#8c52ff] gap-2' onClick={downloadPdf}>
+                    <a href="/BrandFeels.pdf" className='relative bg-[#8c52ff] rounded-full h-[3.5rem] w-full flex justify-center items-center cursor-pointer hover:bg-[transparent] transition-all duration-300 ease border-2 border-[#8c52ff] gap-2'>
                         <span>Apresentação</span>
                         <img src="/content/imgs/download.png" alt="icon" className='invert w-6' />
-                    </button>
+                    </a>
                 </div>
             </div>
         </div>

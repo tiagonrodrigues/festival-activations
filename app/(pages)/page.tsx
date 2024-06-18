@@ -22,6 +22,12 @@ export default function Home() {
         >
           Rock In Rio
         </Link>
+        <Link
+          className="flex items-center justify-center text-center w-full bg-[var(--brandfeels)] p-2 rounded-md"
+          href={"/links"}
+        >
+          Brand Links
+        </Link>
       </div>
     </div>
   )
