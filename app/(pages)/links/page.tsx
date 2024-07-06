@@ -19,9 +19,9 @@ export default function Links() {
                         <img src="/content/logos/icon.png" alt="logo" />
                     </div>
                     <p className='text-[1.6rem]'>Brandfeels</p>
-                    <a className='hover:underline' href="mailto:info@brandfeels.com">info@brandfeels.com</a>
+                    <a className='hover:underline' href="mailto:info@brandfeels.com">support@brandfeels.com</a>
                 </div>
-                <div className='w-full flex flex-col gap-4'>
+                <div className='flex flex-col w-full gap-4'>
                     <button onClick={() => window.open("https://brandfeels.com", '_blank')} className='relative bg-[#8c52ff] rounded-full h-[3.5rem] w-full flex justify-center items-center cursor-pointer hover:bg-[transparent] transition-all duration-300 ease border-2 border-[#8c52ff]'>
                         <p>Website</p>
                     </button>
@@ -30,7 +30,7 @@ export default function Links() {
                     </button>
                     <a href="/BrandFeels.pdf" className='relative bg-[#8c52ff] rounded-full h-[3.5rem] w-full flex justify-center items-center cursor-pointer hover:bg-[transparent] transition-all duration-300 ease border-2 border-[#8c52ff] gap-2'>
                         <span>Apresentação</span>
-                        <img src="/content/imgs/download.png" alt="icon" className='invert w-6' />
+                        <img src="/content/imgs/download.png" alt="icon" className='w-6 invert' />
                     </a>
                 </div>
             </div>
